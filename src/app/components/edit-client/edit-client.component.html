@@ -1,3 +1,123 @@
-<p>
-  edit-client works!
-</p>
+<section class="row">
+    <div class="col-md-6">
+        <a [routerLink]="['/client/' + clientId]" class="btn btn-outline-secondary rounded-0 mt-3">
+            <i class="far fa-arrow-alt-circle-left mr-3"></i> Back to Details
+        </a>
+    </div>
+
+    <div class="col-md-6">
+
+    </div>
+</section>
+
+<section class="row mt-5">
+    <div class="col-8">
+
+        <div class="card rounded-0">
+            <div class="card-header">
+                    <i class="fas fa-user-edit mr-3"></i> Edit Client
+            </div>
+            <div class="card-body">
+
+                <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+                    <div class="form-group mb-4">
+                        <label for="firstName">First Name</label>
+                        <input
+                            type="text"
+                            class="form-control rounded-0"
+                            [(ngModel)]="client.firstName"
+                            name="firstName"
+                            #clientFirstName="ngModel"
+                            placeholder="John"
+                            minlength="2"
+                            required>
+
+                        <div *ngIf="clientFirstName.errors?.required && clientFirstName.touched" class="alert alert-danger rounded-0">
+                            First name is required.
+                        </div>
+                        <div *ngIf="clientFirstName.errors?.minlength && clientFirstName.touched" class="alert alert-danger rounded-0">
+                            Must be at least 2 characters.
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="lastName">Last Name</label>
+                        <input
+                            type="text"
+                            class="form-control rounded-0"
+                            [(ngModel)]="client.lastName"
+                            name="lastName"
+                            #clientLastName="ngModel"
+                            placeholder="Smith"
+                            minlength="2"
+                            required>
+
+                        <div *ngIf="clientLastName.errors?.required && clientLastName.touched" class="alert alert-danger rounded-0">
+                            Last name is required.
+                        </div>
+                        <div *ngIf="clientLastName.errors?.minlength && clientLastName.touched" class="alert alert-danger rounded-0">
+                            Must be at least 2 characters.
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            class="form-control rounded-0"
+                            [(ngModel)]="client.email"
+                            name="email"
+                            #clientEmail="ngModel"
+                            placeholder="John"
+                            minlength="2"
+                            required>
+
+                        <div *ngIf="clientEmail.errors?.required && clientEmail.touched" class="alert alert-danger rounded-0">
+                            Email is required.
+                        </div>
+                    </div>
+                    
+                    <div class="form-group mb-4">
+                        <label for="phone">Phone</label>
+                        <input
+                            type="text"
+                            class="form-control rounded-0"
+                            [(ngModel)]="client.phone"
+                            name="phone"
+                            #clientPhone="ngModel"
+                            placeholder="+387 62 000 000"
+                            minlength="10"
+                            required>
+
+                        <div *ngIf="clientPhone.errors?.minlength && clientPhone.touched" class="alert alert-danger rounded-0">
+                            Add a valid phone number.
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="balance">Balance</label>
+                        <input
+                            type="number"
+                            class="form-control rounded-0"
+                            [(ngModel)]="client.balance"
+                            name="balance"
+                            #clientBalance="ngModel"
+                            [disabled]="disableBalanceOnEdit">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="btn btn-outline-primary btn-block rounded-0" type="submit" value="Submit">
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-4">
+        <h3>Lorem ipsume...</h3>
+
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam aliquid molestias nemo a accusantium quas quod, consectetur voluptatum at error, hic porro! Et, porro quam aperiam modi recusandae ratione beatae!</p>
+    </div>
+</section>
