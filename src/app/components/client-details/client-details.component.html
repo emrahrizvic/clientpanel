@@ -1,3 +1,78 @@
-<p>
-  client-details works!
-</p>
+<section class="row">
+    <div class="col-md-6">
+        <a routerLink="/" class="btn btn-outline-secondary rounded-0 mt-3">
+            <i class="far fa-arrow-alt-circle-left mr-3"></i> Back to Dashboard
+        </a>
+    </div>
+
+    <div class="col-md-6 text-right">
+        <a [routerLink]="['/edit-client/' + clientId]" class="btn btn-outline-primary rounded-0 mr-3 mt-3">
+            <i class="far fa-edit mr-3"></i> Edit Client
+        </a>
+        <button (click)="onDeleteClick()" class="btn btn-outline-danger rounded-0 mt-3">
+            <i class="far fa-trash-alt mr-3"></i> Delete Client
+        </button>
+    </div>
+</section>
+
+<section class="row mt-5">
+    <div class="col-8">
+
+        <div *ngIf="client" class="card rounded-0">
+            <div class="card-header">
+                <i class="far fa-user mr-3"></i> {{client.firstName}} {{client.lastName}}
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <h5>Client ID:  <span class="font-weight-light ml-3">{{ clientId }}</span></h5>
+                    </div>
+                    <div class="col-6 text-right">
+                        <h5>
+                            Balance:
+                            <span 
+                                class="font-weight-light ml-3 mr-2"
+                                [class.text-danger]="hasBalance"
+                                [class.text-success]="!hasBalance">
+                                    {{ client.balance | currency:"BAM" : ' ' }} KM
+                            </span>
+                            <small 
+                                (click)="showBalanceUpdateInput = !showBalanceUpdateInput"
+                                style="cursor: pointer;">
+                                <i class="far fa-edit"></i>
+                            </small>
+                        </h5>
+
+                        <div class="clearfix">
+                            <form
+                                *ngIf="showBalanceUpdateInput"
+                                class="form-inline float-right">
+                                    <div class="form-group">
+                                        <input
+                                            type="text"
+                                            [(ngModel)]="client.balance"
+                                            name="balance"
+                                            class="form-control rounded-0">
+                                    </div>
+
+                                <button (click)="updateBalance(clientId)" class="btn btn-outline-primary rounded-0 ml-3">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="list-group mt-3">
+                    <li class="list-group-item rounded-0">Contact Email: <span class="font-weight-light ml-3">{{ client.email }}</span></li>
+                    <li class="list-group-item rounded-0">Contact Phone: <span class="font-weight-light ml-3">{{ client.phone }}</span></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-4">
+        <h3>Client Arhive</h3>
+
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam aliquid molestias nemo a accusantium quas quod, consectetur voluptatum at error, hic porro! Et, porro quam aperiam modi recusandae ratione beatae!</p>
+    </div>
+</section>

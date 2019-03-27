@@ -1,10 +1,13 @@
 <div class="row">
   <div class="col-md-6">
-    <h2><i class="fas fa-users mr-3"></i> Clients</h2>
+    <h2 class="mb-2"><i class="fas fa-users mr-3"></i> Clients</h2>
+    <p class="text-muted mb-0"> <strong>Total Owed:</strong> <small class="ml-2" *ngIf="totalOwed"> {{ totalOwed | currency:"BAM" : ' ' }} KM</small></p>
   </div>
 
   <div class="col-md-6">
-    <h5 class="float-right text-muted pt-2">Total Owed: <small class="ml-2" *ngIf="totalOwed"> {{ totalOwed | currency:"BAM" : ' ' }} KM</small></h5>
+    <a routerLink="/add-client" class="btn btn-outline-primary rounded-0 float-right mt-3">
+      <i class="fas fa-plus-circle mr-3"></i> Add New Client
+    </a>
   </div>
 </div>
 
@@ -15,9 +18,7 @@
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Balance</th>
-      <th class="text-center">
-        <app-sidebar></app-sidebar>
-      </th>
+      <th class="text-center"></th>
     </tr>
   </thead>
   <tbody>
@@ -27,7 +28,7 @@
       <td> {{ client.email }} </td>
       <td> {{ client.balance | currency:"BAM" : ' ' }} KM</td>
       <td class="text-center"> 
-        <a routerLink='/' class="btn btn-sm btn-outline-secondary rounded-0">
+        <a [routerLink]="['/client/' + client.key]" class="btn btn-sm btn-outline-secondary rounded-0">
           <i class="far fa-arrow-alt-circle-right mr-2"></i> Details
         </a> 
       </td>
