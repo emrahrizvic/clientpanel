@@ -20,7 +20,6 @@ export class ClientsComponent implements OnInit {
       this.clients = clients;
       this.getTotalOwned();
     });
-
   }
 
   getTotalOwned() {
